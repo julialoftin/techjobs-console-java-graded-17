@@ -68,14 +68,14 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
-
+        // creates ArrayList of HashMaps to return
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
+        // finds all rows in all job data
         for (HashMap<String, String> row : allJobs) {
-
+            // assigns a variable to the column requested in each row
             String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+            // if requested value exists in that column, adds it to ArrayList
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
@@ -95,7 +95,17 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        // creates ArrayList of HashMaps to return
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        // finds all rows in all job data
+        for(HashMap<String, String> job : allJobs) {
+            for(String jobData : job.values()){
+                if (jobData.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(job);
+                }
+            }
+        }
+        return jobs;
     }
 
     /**
